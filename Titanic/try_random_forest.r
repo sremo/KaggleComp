@@ -1,3 +1,4 @@
+library(randomForest)
 raw_trainset <- read.csv("train.csv")
 
 attach(raw_trainset)
@@ -25,3 +26,5 @@ test_set <- data.frame(pclass, sex, age, sibsp, parch, fare, embarked)
 test_set.roughfix <- na.roughfix(test_set)
 
 mypredict <- predict(minimal.rf, test_set.roughfix)
+
+raw_test_set$survived <- as.integer(mypredict) - 1
